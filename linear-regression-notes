@@ -1,0 +1,85 @@
+Linear Regression - Notes from Luis Serrano's friendly introduction to ML.
+
+-Complex understanding: Linear Alegbra, Matrices, Calc
+-Simple: Moving a line to fit points
+-Estimate values by putting points into a plot with a horizontal and vertical axis.
+-Fitting a line through a set of points and estimating a value with that line.
+-Points not always perfect, but works for estimate, find the CLOSEST.
+-Works for any application you need numbers for: spread of virus, finance stocks
+-How?
+-Human: "eyeball". Computer, needs an algorithm/procedure.
+-Computer Method:
+-Throw in a random line, anywhere on the plot. Slowly moves the line closer and closer to the point until it works.
+-More specific: relates position of the lines to each of the points to find if it should come closer or more far away. Which of each points to relate: Repeat Points, random points, many points at a time
+-HOW to move a line closer, mathematically?
+-Line has 2 parameters, can make any line with these 2:
+-Slope/steepness, Vertical distance/horizontal distance
+-Y Intercept, How high it touches vertical axis. 
+-MOVE these 2 parameters in the way that helps us the most, ROTATION + TRANSLATION.
+-Rotation:
+-Rotation is just changing the slope of a line. Counterclockwise increases slope, Clockwise decreases slope. Depends on the Y-Intercept as the pivot point of rotation.
+-Translation:
+-Just changing the y intercept. Translating up/down, making y intercept bigger/smaller.
+-All of these mathematically show how to move a line.
+-4 cases/"regions" to move a line closer, the case used depends on the point, these depends on whether the point is above/below the line and to the left/right of y intercept:
+-Increasing slope + y-int, decreasing slope increasing y int, increasing slope decreasing y int, decreasing slope + y int.
+-Math and lines come in equations, y = mx + b. 
+-RULE OF MACHINE LEARNING!!!
+- DONT MAKE DRASTIC STEPS. SMALL STEPS. (SMALL LEARNING RATE)
+-Steps to moving line:
+1) Start with the original randomly placed line, with random generated slope + y intercept.
+2) In machine learning, you repeat learning MANY MANY times. Pick a LARGE number, (1000), number of repetitions/iterations/epochs,
+3) Pick a SMALL number (learning rate) IE).01
+4) THEN Repeat the following the number of times as your large number (1000):
+Then, use the 4 cases to moving a line to move the line. Decide which case to use by comparing with points. 
+Add or subtract learning rate to slope, add or subtract learning rate to y intercept, if point is above/below line/ left/right of y axis.
+5) You have a fitted line.
+- You can make simple written out pseudo code before coding. 
+-THIS IS VERY BASIC, for SIMPLE data sets. BUT this takes LONG, we can improve to converge quicker. Can also be simpler, TOO MANY CASES. Simplify the cases. Transform all cases into 1 case. This is the "SQUARE TRICK"
+-Instead of "above/below/right/left", use Positive and Negative differences.
+-What did that mean? If there are 2 points, declare that the distance from point A to point B is positive, and distance from point B to point A is negative. Mathematically, this is found by subtracting the respective coordinates from the  second point from the first point. 
+-Calculate distances this way from the the comparing Point, and 2 things. Compare to from line to Y axis, and compare from line to point. If point is below, second point coordinate minus point of line coordinate is negative. Negative Number Means INCREASE y intercept, Positive Number Means DECREASE y intercept so it can get closer. 
+For slope:
+-If you MULTIPLY the difference between the point and the line/y axis, you get the procedure for slope. If Difference A * Difference B = negative, Decrease slop, if Difference A * Distance B = Positive, Increase Slope.
+-Rule:
+To rotate: 
+Add vertical distance * horizontal distance to slope
+To translate
+Add vertical distance to y int.
+BUT vertical distance and vertical*horizontal are large numbers!!!
+In machine learning, SMALL STEPS!!!
+Therefore, multiply them by the small learning rate.  
+-Steps to moving line with square trick:
+1) Start with the original randomly placed line, with random generated slope + y intercept.
+2) In machine learning, you repeat learning MANY MANY times. Pick a LARGE number, (1000), number of repetitions/iterations/epochs,
+3) Pick a SMALL number (learning rate) IE).01
+4) THEN Repeat the following the number of times as your large number (1000):
+Pick Random Point
+Add (learning rate) x (vert distance) x (hori distance) to slope
+Add (learning rate) x (vert distance) to y intercept
+Where vert distance is difference of point from y axis(0) and hori distance is difference of point from y position of line at the same x position. 
+5) You have a fitted line.
+
+Second algorithm works well. But is it better than the first?
+John Borwein:
+A mathematicion, finding digits of Pi. Made a new formula, but like this case, is it better? Even if its NOT BETTER though, since the new formula is SIMPLER, it still is better.
+This case: Second Algorithm is the exact same thing as first algorithm. But its much simpler, and simpler is better, so it is better.
+
+Square Error Algortithm: Another method to do linear regression
+Come up with a measure that tells apart a bad line from a good line using the points.
+This is an error function, a measurement of how bad the line is that is BIG for bad lines and SMALL for good lines. 
+Square Error is taking distance from point to line and square it, and square error is the sum of all squares. Smaller square error is better. 
+How to move line based on the squares though?
+Needs calculus, GRADIENT DESCENT.
+-take the square error (sum of squares), take the derivative of this, and take the small step in the opposite of the derivative. 
+This is the Same as the SQUARE TRICK algorithm and Region Algorithm but simpler. Why is this better? Square trick and region algorithm don't use errors, they just compare. Don't measure the "goodness/badness" of a line. 
+
+Absolute Error Algorithm:
+There are multiple ways to measure the "goodness/badness" of a line, square error is one of them. Another method is Adding the LENGTH of the distance between point and line, not including the sign, so adds the absolute value of the lengths. A bad line has larger lengths so its sum is larger, good line has smaller lengths. Then use Gradient Descent Step (calculus). This develops an "Absolute Trick", like the Square Trick.
+Step 1) declare learning rate
+Step 2) If point is above the line, Add (learning rate) x(horizontal distance to slope, add (learning rate) to y-intercept
+If point is below the line, subtract (learning rate) x (horizontal distance) to slope, subtract (learning rate) to y-intercept.
+
+The Tricks are turning the mathematical ideas to tricks with Code. 
+
+TODO: Prepare all of the assets for the ML adventure by next week, 4/8/2020. Start Linear Regression Algorithm 4/9/2020.
