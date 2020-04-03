@@ -1,0 +1,205 @@
+Today, I watched a video for Logistic Regression. Here are the notes I took for it.
+
+Logistic Regression:
+Instead of calc, use a trick to move line closer to points.
+
+Perceptron:
+Email Spam Classifier:
+Filter that identifies Spam.
+2 Types of Email: 
+Spam/Ham(nonspam)
+"FEATURES": Things that tell apart Spam and Ham.
+Ie) 'buy', spelling mistakes
+
+Organize email on how many times buy appears on a number line from 0-x, where crosses and circles (X and O) mark whether it is spam or ham. Draw a vertical line line on a constant point on the number line to best divide spam and ham. This line can already create a part of the Spam Filter. 
+
+In code, this can be easily done with comparators:
+
+If #appearances of word 'buy' >2, then spam.
+
+You can repeat this for many features, IE) Spelling mistakes, more comparators. BUT if you have more than one feature, IE) 2 features, 2 simple comparators like above don't work too well. One way: check both, only if both work, then Ham. This is a "decision tree", and in an oversimplified way, a neural network. 
+OR, as a logistic regression, you use the sum/linear combonation of ALL features. 
+Add together all number of features. THEN, you can sort the 2, drawing the 2D vertical line on the a 1D line plot of those Values. 
+If #appearances of 'buy' + spelling mistakes > 4, then spam. 
+
+ORRR
+Plot the 2 features in a 2D x-y graph with the x axis as one feature and the y axis as another feature. Then, plot each classification (spam/ham), and plot them on the graph according to their amounts of each feature. THEN, you can draw a LINEAR line to draw between the 2 data points. 
+
+What we did was split data, find a way to put most Ham into one part of a plane by features, and put Spam on another side with the same features and draw the closest line. HOW CAN A COMPUTER FIND THIS LINE?
+
+Perceptron Algorithm. Start with a random line, with the things below the line as "HAM", above the line as "SPAM". Then, move lines based on asking the points. Ask both the SPAM points and the HAM points. The Spam/Ham points respond on whether they fall above/below the line where they belong. (A point will say "don't move if it is in the right side, but a point will say get over here if it is in the wrong side). When all points are good, then the line is fine.
+
+STEP 1: Start with a random line
+STEP 2: Pick a large number of iterations.
+StEP 3: Repeat for the number of iterations:
+
+-Pick random point.
+IF POINT IS CORRECTLY CLASSIFIED, 
+DO NOTHING.
+IF POINT IS INCORRECTLY CLASSIFIED,
+MOVE LINE TOWARDS POINT
+
+Classification depends on which side of the line the point is on. (above/below region)
+
+Moving a line in logistic regression:
+Translation
+Rotation according to y-intercept pivot
+Rotation according to x-intercept pivot
+
+For Perceptron/logistic, y = mx+b is not as good. INSTEAD: ax + by - c = 0
+
+Increasing c translate line down, decreasing c moves line up. 
+Increasing a rotates clockwise accordig to y-intercept pivor.
+Decreasing a rotates counterclockwise according to y intercept pivot.
+Increasing b rotates counterclockwise according to x intercept pivot.
+Decreasing b rotates clockwise according to y intercept pivot. 
+Why? You can check it based on x-int values, y-int values, and pythag thereoms.
+
+IN ML ALWAYS SMALL STEPS. Increase a, b, c by very small values, this value is called the learning rate. 
+
+Edited Algorithm:
+
+STEP 1) Start with a random ax + by - c = 0 line
+STEP 2) Pick large number of iterations
+STEP 3) Pick Small number learning rate
+STEP 4) Repeat by number of iterations:
+Pick random point
+If point is correctly classified, do nothing.
+If point is incorrectly classified,
+Add/subtract learning rate to a, b and c. 
+
+Perceptron TRICK: 
+Based on Horizontal distance from the Y-AXIS, you can tell how much to increase of decrease A. Increase A if Negative Horizontal distance from y axis, decrease a if positive horizontal distance from y axis. Increase and decrease a lot more works if it is extremely far from the y axis. You can easily tell horizontal distance, positive and negative, from y-axis by the coordinates, as the x-coordinate is horizontal distance.
+Where the point is located with respect to y axis tells us how to change a.
+
+ HERES THE TRICK:
+MAKES converging much quicker. Why? Because it doesnt increase everything by constant learning rate, and treats points that are VERY FAR from line same as for very close to line.
+SO
+Multiply X-Coordinate by Learning rate (to make it small, because SMALL STEPS IN ML) , and subtract that from a. Why subtract? Bc " decrease a if positive horizontal distance from y axis."
+Not surprisingly, the exact same works for B and the Y Coordinate of the point. Multiply Y-coordinate by learning rate, and subtract from b. 
+
+
+NOW, using this COOL TRICK you can make a math equation!!!
+
+(a-.01p)x + (b-.01q)y +(c-.01) = 0
+with coordinate (p,q)
+
+WHAT IF Classification Swapped? Above line is Ham, below is SPAM? Then at that point you add .01p or .01q instead of subtracting. 
+
+(a+.01p)x + (b+.01q)y +(c+.01) = 0
+with coordinate (p,q)
+
+BUT there are outliers.
+IF area above a line is RED and area below it is BLUE, then Red points need to be in Red area and Blue points need to be in Blue area. WHAT IF red ppint in blue area though? Outlier. 
+
+TO ACCOUNT FOR THESE:
+Need to do something called "positive and negative regions". 
+Try: Plugging in x,y of points into the equation of the line. MATH TRICK!!! 
+IF YOU PLUG IN the X,Y, YOU FIND THAT POINTS ABOVE LINE RETURN POSITIVE #S AND POINTS BELOW LINE RETURN NEGATIVE #S. These are known as positive and negative regions, respectively. Every point that is ON the line is 0. 
+Positive and Negative Regions SWAP if all signs of A, B and C swap signs.
+
+
+Apply this concept of positive and negative regions to the X-Y 2D plot with the 2 features as x and y axis. The negative region below the line SHOULD be HAM, positive region above SHOULD be SPAM. #buy+#mistakes > 4 above line, #buy+#mistakes < 4 below line, #buy +#mistakes =4 on line. You can apply this to the color comparision too, BLUE area is negative region, RED area is positive region. 
+
+Therefore, if a point is incorrectly classified, it is if a Blue Point, which should be in a negative region/Blue area is in a RED Area, which can be determined by if it is in a positive region, them... This means you can write "incorrectly classified points" into the algorithm based on math equation.
+
+
+STEP 1) Start with a random ax + by - c = 0 line
+STEP 2) Pick large number of iterations
+STEP 3) Pick Small number learning rate
+STEP 4) Repeat by number of iterations:
+Pick random point
+If point is correctly classified, do nothing.
+If point is incorrectly classified,
+If Point is blue and ap + bq +c > 0, 
+subtract .01p to a, subtract .01q to b, subtract .01 to c.
+If Point is red and ap + bq +c < 0,
+add.01p to a, add.01q to b, add.01 to c.
+
+THIS IS PERCEPTRON THAT WORKS WELL!
+
+BUT THERE IS AN EVEN BETTER ALGORITHM, CALLED LOGISTIC REGRESSION ALGORITHM, THIS IS THE OPTIMAL ALGORITHM.
+
+Gradient Descent:
+Essentially, this uses mathematics to move the line not based on whether it is "correctly/incorrectly" classified, but how badly/how correctly classified it is. THIS IS WITH AN ERROR VALUE.
+Measure the distance from the points to the line. Sum all the distances, you get total distances.   ERROR IS ZERO IF IT IS CORRECTLY CLASSIFIED. If the red dot is in the red region, if the blue dot is in the blue region. BUT, it has a numerical error if it is incorrectly classified, red point in blue, blue point in red. 
+
+TRICK FOR CALCULATING INDIVIDUAL ERROR/DISTANCE:
+ If you plug in the coordinate into the equation of the line in ax + by - c form, you get error. BUT WHAT IF ERROR IS NEGATIVE, AS IT IS IN THE ERROR REGION? This is when we can do squares error, OR we can do even better:
+
+ABSOLUTE VALUE OF EVERYTHING, ABS INDIVIDUAL ERROR. 
+
+Individual Error is Proportional to the distance from the point to the line, perpendicular to the line. 
+
+GIVEN THIS, THIS IS GRADIENT DESCENT!!!!
+With a random line that is most likely bad, large error. Minimize Error using CALCULUS.
+
+WHY do we have to use Calc......
+Because! Calculus is good at minimizing functions. Gradient Descent with Error is SAME as Original Perceptron trick!
+
+IMAGINE gradient descent as a parabola, y = x^2.
+This parabola is called the Error Function!
+When you start off with a random line, your points have random errors with respect to the classification line. 
+
+In the Error Function, Imagine the Y-AXIS is Error. Higher up in the Error Function, Higher Error. The lower it is, the lower error. When a line is randomly started, points are scattered across the Error Function parabola. The Left Half of the parabola is "red region", Negative Region Points, Right Half is "blue region", Positive Region Points. Gradient Descent is all about moving all points on the error function parabola closer and closer in tiny steps to the Middle Vertex from both sides, minimize error. The very bottom, the vertex, is the Perfect Classifier. 
+
+BUT BUT BUT:
+Which direction on the parabola should points move? How does a point on the error function know whether to move to the bottom or top? HOW? This is where calc comes. DW its not hard!
+
+Calculate the Tangent Line of A Point. Calculating the Slope of a Point. This tells you the direction to move in. This tangent is called the gradient in higher dimensions, the gradient will point in the direction closer to the bottom vertex. The tangent is just the derivative of the point, deriving the error function. 
+
+Taking the derivative of the error function and moving it a small amount is the SAME AS PERCEPTION TRICK! 
+
+Log-Loss function/Logistic Regression algorithm. Doesn't care if you are above or below the line. 
+WAIT WHAT IS PERCEPTRON TYPE OF ALGO? IS IT 
+With Previous Error Function, Correct Classified Error=0, Incorrect Classified Error proportional to distance from line. Further you are from line, worse error is. LOG-LOSS is very very similar:
+
+Log-Loss function:
+It looks very very complicated in math form. BUT ESSENTIALLY, what it is:
+
+The red and blue dots/Points get another aspect to them if they are incorrectly classified. (red in blue...) IF Incorrectly classified, the Dots grow bigger if they are close to the line and MUCH MUCH LARGER if they are far from the line. 
+Its the exact same as the Perceptron Algorithm, it's just a very very small difference. 
+But this is not enough, need to adapt for this. 
+
+NEED to change the TYPE of prediction. Rather than just Spam/Not Spam, binary, there are emails that are "more" likely to be spam, "less" likely to be spam...
+Turn this into a probability, not a yes/no.
+
+Currently, in binary, ham(blue) is 0, spam(red) is 1. BUT! Isn't the Line 50%, as it is perfectly in between spam and ham? This TRICK easily lets you turn this binary into probability. If you take the line of fit and translate it up/down, you can create lines of all probabilities as long as they are parallel to the original line. The percentage depends on the position of the line, if it is closer to the original, it is closer to 50%, if it is farther away, it is closer to 1 or 0, depending if you are in the 1 or 0 area. 
+
+Any point on the newly created parallel line can now be classified as that probability's likelihood of Spam. 
+
+NOW, combine all of the probability lines. Activation function into a sigmoid function. It looks like a horizontal cubic function. What this activation function does is take a value input (which will be the probabilities of likelihood as Spam) and returns a prediction of whether it IS spam or not, binary, based on the activation function. 
+
+THEN! This can be translated into error. If you have a well classified with probability point, you find the error derivative. How? If you have a red point, its probability should be closer to 1. If the red point is in the blue zone however, it will fall under one of the proportions that is less than 50%, not close to 1 at all. These proportions let you easily calculate error: Subtract 1 from red probabilities. Likewise, do the opposite for blue points, subtract 0 from blue probabilities. Then, you can design an algorithm to move the line based on how big the error is. 
+
+
+ALL OF THIS PROBABILITY STUFF IS JUST A WAY TO CLASSIFY BETTER, NOT JUST 2 CONDITIONS: RED IN BLUE AND BLUE IN RED, ITS HOW BAD ARE U? APPLY THIS TO ERROR! YOU CAN MAXIMIZE EFFICIENCY FROM BOTH THE "CORRECT" SIDE AND "INCORRECT"
+
+Before:
+If a red point is in red zone:
+"tells line" don't move.
+Now, with probabilities:
+If a red point is in a red zone, but it is in an extreme probability (close to 1/0), it can tell line to move a littttle bit. This little bit is very little, because "advice" given from points that are already correctly classified is like nothing compared to the incorrectly classified. 
+
+These probabilties are basically just a map. Where are you in the plot, and you can use these probability numbers to move the line so no point on the map is too far from the line. 
+
+Because: Even if you have a perfectly classified line, you can definitely have a better classified line than other correct classified lines. 
+
+These are all log loss errors. Now, how do we take these probability errors and actually decide to move the line?
+
+You guessed it. Gradient Descent, Calculus!
+
+Logistic Regression Algo:
+
+Step1) Random Line: ax + by - c = 0
+Step2) Large Iter Number
+Step3) Small Learning Rate Number
+Step4) Repeat Iter Times:
+Pick Random Given Point (p,q)
+Add .001(label-prediction)p to a
+Add .001(label-prediction)p to b
+Add .001(label- prediction) to c.
+
+
+QUESTION:WHAT IS LABEL AND PREDICTION? IS PREDICTION THE PROBABILITY OF THE POINT, OR THE PROBABILITY THE LOG FUNCTION ACTIVATE. Why Subtract? In the video he says label-prediction is 1 or 0, but if it is activation, then sigmoid activate shouldn't be that binary. Logistic is pretty complicated, please clarify. 
+Label is Red/Blue, 1 or 0. Prediction is the Probabiltiy/Activation?
