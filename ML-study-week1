@@ -1,0 +1,120 @@
+ML
+1950 Arthur Samuel, the Checkers Playing Bot
+Tom Mitchell: a computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.
+
+Web search engines:
+The sites that pop up first when googling is bc of ML. “Ranking Web Pages”
+FB/Apple Photo Recognition.
+Spam FILTERS
+ML IS COOL. Machines as smart as humans…
+Everyone loves ML! Not just in tech, learn how to reach to other fields. 
+ML is great bc we have a LOT OF DATA.
+In Si Valley, Clickstream data big. (“DATA MINING”)
+Medical, Biology, DNA Sequence, ETC
+ML allows us to program what cannot be programmed by hand.
+Handwriting recognition makes post mailing so cheap
+Product Reccomendation on Netflix, Amazon
+Learning algorithms to understand the human brain
+2 Main types of ML algorithms: Supervised VS Unsupervised
+Supervised Learning
+We teach comp how to do something
+ Unsupervised Learning.
+Comp learns to do it itself.
+Others:
+Reinforcement Learning
+Reccommender Systems
+More algorithms less used
+BUT! As important as knowing algorithms, equally important is practical advice on applying ML algorithms.
+
+Two definitions of Machine Learning are offered. Arthur Samuel described it as: "the field of study that gives computers the ability to learn without being explicitly programmed." This is an older, informal definition.
+Tom Mitchell provides a more modern definition: "A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E."
+Example: playing checkers.
+E = the experience of playing many games of checkers
+T = the task of playing checkers.
+P = the probability that the program will win the next game.
+In general, any machine learning problem can be assigned to one of two broad classifications:
+Supervised learning and Unsupervised learning.
+Supervised Learning:
+Gven prices of houses, with Size of House and Price of House:
+Trying to find the line of Best Fit is one example of a supervised learning function. Or a polynomial line of best fit. HOW TO CHOOSE? STRAIGHT LINE VS QUADRATIC? Later learn.
+Supervised Learning:
+Many types. One type is trying to find that linear/polynomial line of best fit that goes through points. THIS IS CALLED A REGRESSION PROBLEM.
+“Giving algorithm a data set that has ‘right answers’”. 
+In the data set of houses, the points given are correct, you estimate a missing output from “correct answers”/values.
+Trying to guess a point through the line of best fit.
+You have axises that you plot data in, Ie)x and y axis, that you do Input/Output on.
+Most Supervised Learning solve for missing output, an x or y axis value there. 
+Estimating probability. Given many “correct” dataset points of 0 or 1. Predict a discrete output value of zero/one based on the correct answers of 0/1. THIS IS CALLED A CLASSIFICATION PROBLEM. Surprisingly, in classification problems, the output can have more than 2 choices for output (0 or 1). How? 
+IE)BREAST CANCER: given data set of malignant/benign.
+Maybe, there are multiple types of breast cancer. Predict a value from 0,1,2,3. 0 is benign, 1 is type 1, 2 is type 2, 3 is type 3…
+HOWEVER, there is still a classification problem because there is a discrete/numerable number of answers. Not infinite number of answers.
+How to plot classification?
+You can have a y axis of 0-1 and x axis of the data. But, this is wasteful and inneficient.
+OR!! You can turn this in to a 1 dimensional line plot. Where 1 is a CIRCLE (O) and 0 is a CROSS (X). With more than 1 attribute, multiple x axises:
+IE) Benign/Malignant VS Size of Tumor.
+This can be depicted by 2 dimensions with 0/1 y axis and x axis tumor size.
+OR the 1D number line with X and O.
+BUT WHAT IF YOU WANT TO COMPARE:
+Benign/Malignant VS Size of Tumer and AGE?
+Just do a 2D plot with X and O. WOWWW
+Tumor Size on x axis, Age on y axis, x and o on the plot. 
+Then, what the learning algorithm does with the classification problem like this, is draw a line of best fit that SEPARATES the outcomes. SEPARATE THE X and O.
+Age/Tumor Size are called Attributes/features, they are the “ind variables”, most ML algoritms deal with MULTIPLE features. One Algortihm is very interesting, INFINITE # of Features/Attributes. 
+Regression problem:
+Goal is to predict a continuous valued output.
+Classification problem:
+Goal is to predict a discrete value output.
+Support Vector Machine
+A mathematical trick that allows a computer to deal with infinite features, despite the computer computationally shouldnt be able to store infinite amounts of feature. 
+YOU, the programmer decides whether to treat something as regression/classification. Remember, discrete output values/small number of output values is classification.
+ 
+
+Supervised Learning
+In supervised learning, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output.
+Supervised learning problems are categorized into "regression" and "classification" problems. In a regression problem, we are trying to predict results within a continuous output, meaning that we are trying to map input variables to some continuous function. In a classification problem, we are instead trying to predict results in a discrete output. In other words, we are trying to map input variables into discrete categories.
+Example 1:
+Given data about the size of houses on the real estate market, try to predict their price. Price as a function of size is a continuous output, so this is a regression problem.
+We could turn this example into a classification problem by instead making our output about whether the house "sells for more or less than the asking price." Here we are classifying the houses based on price into two discrete categories.
+Example 2:
+(a) Regression - Given a picture of a person, we have to predict their age on the basis of the given picture
+(b) Classification - Given a patient with a tumor, we have to predict whether the tumor is malignant or benign.
+Unsupervised Learning.
+In supervised learning, we are told what we are looking for in the output. IE) We are trying to find house price. We are trying to find malignant/benign. (O or X)
+UNSUPERVISED LEARNING, IN A NUTSHELL, IS GIVEN A DATA SET WHERE YOU DONT KNOW WHAT IS CORRECT OR INCORRECT. DON’T KNOW WHAT WE ARE LOOKING FOR IN THE OUTPUT. Data set is all O, we don’t know what is X.
+Just told, here is the data set, can you tell if theres any patterns/structures in the datasets?
+HOW?
+IE)
+The Unsupervised Algorithm may decide that data is in clusters, then breaks the data into the 2 separate clusers. This type is called a clustering algorithm. IE) GOOGLE NEWS: EVery day it looks at 100s of thousands and groups/clusters them into stories. You get multiple sides of the same story from different news outlet. Google News clusters together the similar news stories.
+IE)
+Understanding genomics. DNA microarray data. This is whether individuals have a gene or not. Hundreds of Genes, Does the individual have it or not? 
+Can apply an unsupervised algorithm here:
+SHow the degree to which individuals have the gene or not. Clustering algorithm clusers and groups the individuals by their gene data. Unsupervised because you don’t have a goal. Just saying, heres a bunch of data, idk anything about the data, here, find some kind of pattern in it. 
+Used to organize large computing clusters: figure out which machines work together, move them closer physically to be faster., 
+Market segmentation, Look at customer data sets and group your customers into “archetypes” and you can market to each better because they are grouped together.
+social network analysis, which friends you email most, who are your friends?
+ASTRONOMY: Clustering algorithms find theories on how galaxies rae formed.
+THESE ARE ALL CLUSTERING ALGORITHMS.
+Cocktail party problem.
+Everyone is talking at the same time, hard to hear. At a cocktail party with 2 people, microphones in the room, differently placed. Each mic records a different combo of speaker voices. Mic 1 and Mic 2 both hear the voices of both people overlapping. BUT. The 2 mics are placed in different locations from the people, even though both voices overlap, the mic closer to person 1 has person 1 louder, the mic closer to person 2 has person 2 louder. 
+PUT THIS TO AN UNSUPERVISED LEANRING ALGORITHM. The “cocktail party algorithm”/
+FInd something, IDK what but find patterns.
+Algorithm decides….
+Hey, it sounds like 2 audio recordings are added together! Like mathematically summing 2 algorithms produced the recordngs. 
+Let me separate the 2 audio sources that are being summed together. 
+Doesnt have to be 2 voices completely! A radio playing while someone talks. Unsupervised can pattern, seperate the radio from the person.
+Is this super super complicated like we think???
+Turns out. This can be done with one line of code.
+[W,s,v] = svd((repmat(sum(x.*x,1),size(x,1),1).*x)*x’);
+Took a long time to devise this code, but thats all it takes. In the right programming ENVIRONMENT, algorithms only take a few lines. This is done in OCTAVE.Free open source language. Octave is incredily fast, as things are built into the languages. IM GONNA USE MATLAB.
+ 
+[W,s,v] = svd((repmat(sum(x.*x,1),size(x,1),1).*x)*x’);
+svd(): Single value decomposition, linear algebra routine built into octave. Ie in python, java, c++, need to use multiple libraries, etc to get this. 
+Octave is super good for testing and prototyping. Octave to protoype your learning algorithm, then move to Java vs C++. Much faster. Octave is a type of programing environment, try it out!
+Labeled Data: Ie) Spam/Not Spam is supervised because you tell it something about the dataset. Specified output Data Ie) have diabetes or not is supervised because it has an answer.
+Unsupervised Learning
+Unsupervised learning allows us to approach problems with little or no idea what our results should look like. We can derive structure from data where we don't necessarily know the effect of the variables.
+We can derive this structure by clustering the data based on relationships among the variables in the data.
+With unsupervised learning there is no feedback based on the prediction results.
+Example:
+Clustering: Take a collection of 1,000,000 different genes, and find a way to automatically group these genes into groups that are somehow similar or related by different variables, such as lifespan, location, roles, and so on.
+Non-clustering: The "Cocktail Party Algorithm", allows you to find structure in a chaotic environment. (i.e. identifying individual voices and music from a mesh of sounds at a cocktail party)
