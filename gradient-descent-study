@@ -39,3 +39,79 @@ That slope will be the fastest descent to the vertex/center of the parabola, alw
 
 In multi dimensions, with Vectors and more than one parameter and cost, you find the slope/differentiate the curve you are on, and that will always give you the direction your point is going.
 Gradient descent is the direction of the steepest descent. 
+
+For Example:
+
+Use Gradient Descent in the simplest method: Minimize the Cost based on the Cost Function of One Parameter.
+If the cost function is J(theta1) and squares error is used, then the cost function graphed is a parabola. 
+Your randomly generated parameters for the hypothesis correspond to a certain cost value, that hypothesis "line" is a point on the cost line.
+
+Gradient Descent first differentiates that one point.
+It Finds the slope of the tangent line of that point on the cost function. 
+If the slope of tangent line is positive: "positive derivative". If slope of tangent line is negative, "negative derivative". 
+Lets say in the one parameter sense:
+
+That parameter is on the x-axis, and the cost is the y-axis. The cost function, squares error, is a parabola.
+You start with your randomly generated parameter, lets say it is very far to the left of the vertex.
+HOW DOES GRADIENT DESCENT GIVE YOU THE DIRECTION TO THE VERTEX?
+Deriving the point, J(theta1), the cost value of the random parameter value returns the slope at that point.
+If you were to the left of the vertex, the slope would be negative. If you were to the right, it would be positive. 
+
+THE DERIVATIVE/THE GRADIENT ALWAYS POINTS TO THE RIGHT DIRECTION, THE DIRECTION OF DESCENT.
+
+If you SUBTRACT your original random parameter from that DERIVATIVE, the Positive/Negative slope of the error at that parameter:
+
+If you were left of vertex, derivative is negative, you subtract the negative derivative FROM your parameter, that ADDS, you MOVE TO THE RIGHT!!!
+Likewise
+If you were right, derivative is positive, subtract positive derivative from the right parameter, SUBTRACTS, you move LEFT.
+
+Then, since simply updating the hypothesis by subtracting derivative is FAR too big of a step, multiply this by a tiny Learning Rate and you're golden.
+
+
+Other awesome affect of Gradient Descent:
+If the absolute value of your error/cost is higher, Imagine the Y-axis value of the cost parabola is high, it is very far away from the middle LOWEST vertex.
+Gradient Descent amazingly accounts for this and descends you MORE if you need to descend more.
+Why?
+High Cost means High Derivative of the cost. The Sign of the derivative/Sign of the Slope of the point tells what direction to go. This means by subtracting (LEARNING RATE)(HIGH DERIVATIVE), you descend faster than:
+(LEARNING RATE)(LOW DERIVATIVE). (close to the vertex, low already, so derivative is low, shallow slope of point)
+
+Gradient Descent accounts for direction and size of steps. 
+
+"Positive/Negative Derivative" can be easily found by > 0 or < 0. GOAL is derivative=0.
+
+If alpha is low, learning rate low, descent takes TOO LONG.
+If alpha too big, learning rate low, descent FAST, but accuracy is low. FAIL to converge/solve and find the vertex, or even overshoot so much it diverges.
+
+Cons of Gradient Descent:
+It does not know how to deal with Local Minimums VS Global Minimums. If the algorithm gets stuck at a local minimum, it will not get out. 
+ANY local minimum gets gradient descent stuck, because either the derivative is 0 and changes nothing, or you will keep bouncing between the right of local minimum and to the left of it, can't escape.
+
+ALPHA/Learning Rate SHOULD BE A CONSTANT NUMBER.
+The derivative constantly updates/lowers/greaters itself, so alpha should never change at all. Gradient Descent auto takes smaller steps as you approach local minimum. 
+
+In an infinite loop, this gradient descent algo will converge itself, as it will not change when the derivative is 0. 
+
+From the Gradient Descent Equation, you can turn all 3 equations:
+
+Hypothesis, Cost FUnction, Gradient Descent, into ONE EQUATION.
+
+Differentiating the derivative term, you can get rid of the derivative term and make a not-calculus equation. Use this equation, don't need to master calculus in advance.
+
+The Problem: gradient descent is subject to local optima.
+Avoiding the Problem: Linear regression will never have multiple local optima.
+Linear regression only has one. Cost function for linear regression only has one minimum, no "bumps"
+Even with 2 (or more parameters). IE) with 2 parameters, linear regression with squared error is called a CONVEX Function, bowl shaped. One minimum. 
+
+
+^^^^^ This version of gradient descent is called BATCH GRADIENT DESCENT.
+Why batch?
+It uses a cost function in the gradient descent equation that is mean squared error. Mean squared error involves ALL POINTS OF THE DATA SET.
+The cost function I am using is has summation: It sums all errors of each data point, squares it, averages it, divided by 2. (for derive) 
+Since it sums all error, it invoves every point, hence BATCH.
+
+With linear algebra, you can generalize gradient descent to get an equation that just solves for the parameter that minimizes the cost function. (NORMAL EQUATION METHOD)
+This removes the itertaive slow progress of the gradient descent algorithms. 
+HOWEVER, for LARGE batches of data, this gradient descent algorithm is even better than the linear algebra equation. 
+
+***Don't forget, with multiple parameters, they update at the same time!. After an iteration, when it is decided how the line should move, all parameters should move together.
+
