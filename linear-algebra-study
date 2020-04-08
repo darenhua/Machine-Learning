@@ -1,0 +1,118 @@
+Matrices and Vectors
+
+MATRIX:
+A rectangular Array of numbers written between square brackets.
+A 2-D Array with a set number of rows and columns.
+
+Dimensions of the Matrix: Written as :
+
+NUMBER OF ROWS X NUMBER OF COLUMNS.
+
+"4 x 2 matrix, 1 x 10 matrix"
+
+Or R^4x2 OR R^1X10
+R just refers to the matrix, with the superscript it says, "Matrix of dimensions..."
+How to refer to specific elements of a matrix? One value/number in the array?
+
+A   
+ xy
+ 
+ Where A is the name of the matrix you are tyring to access:
+ 
+ A = [1,2,3]
+ 
+ And x is the row, y is the column.
+ To access the number 2 for example,
+ 
+A    = 2
+  12
+  
+If the row #/column # does not exist, then the value of the element you try to access is undefined. 
+
+VECTORS:
+What is a vector?
+A vector is just a special type of matrix. 
+A vector is just a matrix with ONE COLUMN.
+A vector is just a matrix of dimensions n X 1, where n is number of rows. n, or number of rows, determines how many dimensions your vector is.
+
+
+IE)
+
+    [3]
+V = |2|     V is a 3 X 1 Matrix. With Vectors, you can just drop the column in describing dimensions. R^3 Matrix.
+    [2]     Can also be written as, V is a 3 Dimensional Vector.
+ 
+ How to refer to elements of a vector? Same as referring to elements of a matrix, but drop the column.
+ 
+ A  
+  i
+ Where A is the vector you try to access, and i is the row number. i is the convention used for accessing vectors. 
+ 
+ There are 2 different conventions for accessing vector columns.
+ 
+ Some use "1-indexed vectors", and some used "0-indexed vectors". 
+ "1-indexed vectors" have the first vector row start as row 1. Likewise, "0-indexed vectors" start with vector row 0. (like python lists)
+ 
+ 0-indexed is more common, so indicate if you use 1-indexed vectors if you are.
+ 
+ MORE CONVENTION:
+ We use uppercase letters to name matrices, amd lowercase letters to name vectors.
+ 
+ In high level coding languages, such as OCTAVE/MATLAB,
+ 
+ You can usually create matrices with notation like
+ A = [1, 2, 3; 4, 5, 6; 7, 8, 9; 10, 11, 12]
+ Where commas delimit columns and semicolons delimit rows. 
+ 
+ With similar logic, you can create vectors like
+ v = [1;2;3] 
+With only semicolons, as vectors only have one row. 
+
+size() is a function that returns a 2 column 1 rowed matrix, the dimensions of the matrix/vector that is passed inside the ()
+
+size() can be assigned to a variable, which can be a vector, or assigned to another matrix of dimensions 2 X 1, which will overwrite its elements.
+
+
+MATRIX ADDITION/SUBTRACTION: Adding or subtracting 2 matrices.
+
+How to add? Add each individual element of one matrix to each respective element of the other matrix.
+Matrix Addition ONLY WORKS if the 2 matrices have the SAME DIMENSIONS.
+
+You get an error if they do not have the same dimensions.
+
+Subtraction works the exact same as addition, also does not work if they do not have same dimensions. 
+
+SCALAR MULTIPLICATION/DIVISION: Multiplying a matrix with a real number (scalar: single value, not a matrix)
+
+     [1 2]
+3 X  |2 3|
+     [2 6]
+How to multiply? Multiply each individual element of the matrix by the value of the scalar. 
+
+Division works the same way, divides each individual element by the scalar.
+
+Scalar Multiplication/Division Works in PEMDAS with Matrix Addition/Subtraction.
+When you matrix add/subtract vectors, you can also call it vector addition/subtraction.
+
+In code/matlab, with 2 matrices/scalars/vectors assigned to variables, you can just do normal operations to indicate matrix addition/scalar multiplication.
+
+Adding a scalar to a matrix adds that scalar value to every value of the matrix.
+
+MATRIX MULTIPLICATION: Multiplying 2 matrices together
+
+Let's do a simpler special case first: Matrix-Vector Multiplication. Multiplying a matrix and a vector together. 
+Result is a vector. Matrix-Vector multiplication ONLY WORKS if the number of columns of the Matrix = the number of ROWS of the Vector.
+
+The end result vector has the dimensions of the number of rows of the matrix. 
+TO MULTIPLY:
+Multiply in rows in rows. Multiply row 1 of the matrix to the vector first, then row 2 to the vector... to row n to the same vector.
+
+How to multiply the row of the matrix to the vector? Take the first column of the row and multiply it by the first row of the vector.
+Take the second column of the row and multiply it by the second column of the vector... take the nth column of one row of the matrix and multiply it to the nth column of the vector.
+THEN, add the all the elements of the row together. This value becomes the first row of the result vector.
+
+This is why matrix-vector multiplication needs the same number of columns in the matrix as rows in the vector. 
+
+CALCULATE THE DIMENSIONS OF THE RESULT VECTOR OF VECTOR-MATRIX MULTIPLICATION BEFORE 
+
+ 
