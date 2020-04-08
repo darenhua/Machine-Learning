@@ -1,0 +1,41 @@
+Gradient Descent is an algorithm
+Used all over the place in ML to minimzie functions. 
+Can minimize an infinite number of parameters in an error function/the hypothesis equation
+Gradient Descent determines the "direction" to iteratively move in.
+
+However, depending on the initialization point, gradient descent can lead to many different results. 
+
+:= is assignment, = in python.
+
+Symbol for learning rate, the size of "steps" is Alpha. 
+
+True Gradient Descent simultaneously updates all parameters. 
+After a gradient descent iter is solved and ready to be assigned, all parameters are reassigned at the same time. 
+
+How does this fit into linear regression, ML?
+Hypothesis Function Generates the line
+Cost Function measures how well it fits the data
+Gradient Descent estimates how to change the parameters of the Hypothesis function based on the Cost Function.
+
+Gradient Descent is only done by differentiating the cost function at a point with certain parameters.
+By differentiating the cost function, you get the slope of the cost function at that point at those parameters.
+Measuring this slope, you can compare with slopes from points all around the error. The derivative/slope that is steepest is the direction we want to go in.
+
+Measuring the slope needs to be broken down into one derivative/one slope for every parameter you have.
+
+Then, we go in the direction chosen in small intervals, alpha, the learning rate. 
+
+"
+Calculates the partial derivative of each parameter at the point in question,
+Combines the partial derivatives with their respective parameter to identify the direction of most negative slope
+Steps in the direction of the most negative slope,
+Repeats the process until it finds the minimum point.
+"
+
+The gradient/slope of the tangent of a point is the direction of fastest descent. WHY???
+
+Look at differentiating a parabola. Making a tangent line at each point. No matter what, if you differentiate that point, you'll get a linear line at that point that represents its slope.
+That slope will be the fastest descent to the vertex/center of the parabola, always.
+
+In multi dimensions, with Vectors and more than one parameter and cost, you find the slope/differentiate the curve you are on, and that will always give you the direction your point is going.
+Gradient descent is the direction of the steepest descent. 
