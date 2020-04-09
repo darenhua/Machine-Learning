@@ -115,4 +115,124 @@ This is why matrix-vector multiplication needs the same number of columns in the
 
 CALCULATE THE DIMENSIONS OF THE RESULT VECTOR OF VECTOR-MATRIX MULTIPLICATION BEFORE 
 
+Matrices Applied!!!
+
+SUCH A COOL TRICK!!!
+
+For ML, often times you need to test the hypothesis (h(theta1) = theta1(x))
+To calculate error you need to calculate between actual y values of points and predicted y values from the hypothesis equations.
+TO GET Predicted Y, you need to plug x into the hypothesis.
+
+This plugging in can take multiple tedious lines of code.
+
+BUT IT CAN BE SOOOOO SIMPLE WITH MATRICES!!!
+
+If you turn the x-coordinates into a matrix and the parameters of the hypothesis into a vector, if you matrix-vector multiply them, you instantly get a vector with all predicted y-coordinates.
+
+WITH ONE LINE OF CODE! JUST MULTIPLY THE 2!!!
+More efficient and simpler than long for loops.
+
+When doing this strategy, you need same number of columns in the data point matrix as rows in the number of parameters, rows in the parameters vector.
+
+Therefore, add columns of just 1 next to the column of x values to match the number of parameters.
+
+In code, with high level language like MATLAB, matrix-vector multiplication is just one operation again.
+
+Name of matrix X Name of Vector. Order Matters!!! must be matrix X vector
+
+MATRIX-MATRIX MULTIPLICATION:
+
+Key step for the normal equation to solve for cost function.
+
+Only works when number of columns of matrix A = number of rows of matrix B.
+
+m X n Matrix * n X O Matrix = m X O Matrix.
+
+Result matrix has number of rows as the first matrix and the same number of columns as the second matrix. Find dimensions of results first.
+
+As a vector is just a matrix with column 1, Matrix-Vector multiplication is just Matrix-Matrix multipication with O=1.
+
+The trick to Matrix-Matrix multiplication is the exact same as Matrix-Vector multiplication, but the second matrix is broken step by step into multiple columns/vectors.
+
+MatrixA * Column1MatrixB = Column1Result
+MatrixA * Column2MatrixB = Column2Result
+...
+ith column of matrix C is obtained by multiplying matrix A with the ith column of matrix B. 
+
+Apply to ML, trick!
+
+You can test multiple hypothesis at the same time with Matrix-Matrix Mulitplication.
+
+By taking x-values of the data points into a column, with added columns of 1 next to that column to account for number of paramenters in the hypothesis:
+And taking the parameters of each hypothesis and making them into a row, with a new column for every hypothesis you need to test,
+
+You can multiply these matrixes, where each column of the result matrix are the predicted y values from the hypothesis that is in the same column number in the hypothesis matrix.
+
+ith column of matrix c is the predicted y coordinate of the hypothesis in the ith column of matrix b.
+Just one line of code, one operation, a simple multiplication between 2 mapped matrices. 
+
+Order doesnt matter with mutliplication with scalars, but does with matrices. 
+VERY Different answers when multiply different orders, might not even work. 
+Matrix Multiplication DOES NOT have communitive property.
+Matrix Multiplication DOES have associative property.
+
+Identity Property: Multiplying 1 doesnt change the number.
+
+Matrix Multiplication DOES have identity property.
+
+The "1" for matrices is called an identity matrix. 
+
+Identity matrices, also denoted as I are matrices with same number of rows as columns. Diagonally across the matrix are 1. Everywhere else besides the diagonal are 0. 
+The 1 X 1 identity matrix is just [1]
+
+If you want to make an identity matrix that will not change a matrix when multiplied to it, just make one with the same number of rows and columns as the non-identity matrix's:...
+Same as the non-identity matrix's COLUMNS if the order of multiplication is Non-identity * identity. 
+Same as the non-identity matrix's ROWS if the order of multiplicatio is identity * Non-identity.
+
+Unlike most matrices, where switching the order of their multiplication changes the value of the product, 
+Nonidentity * I = I * Nonidentity = Nonidentity. 
+
+Now, there are 2 other special matrix operations:
+
+MATRIX INVERSE:
+Any ordinary number multiplied by its inverse is equal to 1, the identity number.
+(ordinary number * 1/ordinary number = 1)
+However, not everything has an inverse: 0 has no inverse.
+Square Matrix: A matrix with same number of rows as columns. 
+
+Matrix Inverse is:
+If a given matrix HAS an inverse, not all matrices have an inverse, and if the given matrix is a square matrix
+Matrix(Matrix Inverse) = Identity Matrix
+With most high level languages, you can calculate matrix inverse very easily with a function. 
+
+What matrices don't have inverses? Complicated. But IE) Matrices of all 0 don't have inverses. 
+Matrixes without inverses, "close to 0", are called degenerate matrices or singular.
+
+Matrix Transpose is:
+A matrix transpose is a function/operation.
+Matrix Transpose basically flips the rows and columns of the matrix. 
+
+Matrix Transpose of a matrix takes that matrix's rows and makes it a column of the transpose.
+In this way, the dimensions of the matrix, the row and column numbers, swap. 
+
+If A is an m X n matrix, and B is A^T, A transposed:
+
+Then B is an n X m matrix where
+B  = A
+ ij   ji
  
+Basically: rotating a matrix 90 degrees and flipping it across the y axis. 
+
+The operator for transpose is '. Single quotation. 
+
+If A is the name for matrix A, the transpose of A is A'. 
+
+A_transpose = A'
+
+
+
+
+
+
+
+
