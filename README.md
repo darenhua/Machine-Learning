@@ -7,3 +7,6 @@ Added the first python script to the repo. Here, I am learning to use Matplotlib
 
 4/6/2020:
 I will now hold off in studying the principles of ML. I will now start to work in Python.
+
+4/12/2020:
+Working through Andrew Ng's Machine Learning Course. Expected finish: a month, until May 12.
